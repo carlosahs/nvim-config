@@ -115,6 +115,7 @@ nnoremap <Leader>L <C-w>L
 
 nnoremap <Leader>fp :prev<CR>
 nnoremap <Leader>fn :n<CR>
+nnoremap <Leader>fa :args<CR>
 
 " Terminal setup
 tnoremap <Esc> <C-\><C-n>
