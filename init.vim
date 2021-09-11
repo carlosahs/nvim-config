@@ -22,26 +22,41 @@ set number
 set splitbelow
 set splitright
 set autowrite
+set relativenumber
+
+nnoremap <leader>s :w<CR>
+nnoremap <leader>W :wa<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :qa<CR>
+nnoremap <leader>e :e
 
 lua << EOF
   local nvim_lsp = require('lspconfig')
   local lsp_saga = require('lspsaga')
+  local cmp = require('cmp')
+
   lsp_saga.init_lsp_saga()
 
   nvim_lsp.pyright.setup{}
   nvim_lsp.clangd.setup{}
   nvim_lsp.texlab.setup{}
+  nvim_lsp.rust_analyzer.setup{}
 EOF
 
 " LSP setup
-nnoremap <leader>gD <cmd>lua vim.lsp.buf.declaration()<CR>
-nnoremap <leader>gd <cmd>lua vim.lsp.buf.definition()<CR>
-nnoremap <leader>K <cmd>lua vim.lsp.buf.hover()<CR>
-nnoremap <leader>gi <cmd>lua vim.lsp.buf.implementation()<CR>
-nnoremap <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
+" nnoremap <leader>gD <cmd>lua vim.lsp.buf.declaration()<CR>
+" nnoremap <leader>gd <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap K <cmd>lua vim.lsp.buf.hover()<CR>
+" nnoremap <leader>gi <cmd>lua vim.lsp.buf.implementation()<CR>
+" nnoremap <leader>rn <cmd>lua vim.lsp.buf.rename()<CR>
 
 " LSPSaga setup
 nnoremap <silent> <leader>gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
+nnoremap <silent> K :Lspsaga hover_doc<CR>
+nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
+nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
+nnoremap <silent> <leader>rn <cmd>lua require('lspsaga.rename').rename()<CR>
+nnoremap <silent> <leader>gd :Lspsaga preview_definition<CR>
 
 " Color scheme setup
 set background=dark
@@ -99,32 +114,3 @@ autocmd TermOpen * setlocal nonumber norelativenumber
 " nnoremap <Leader>tn :NERDTree<CR>
 " nnoremap <Leader>tt :NERDTreeToggle<CR>
 " nnoremap <Leader>tf :NERDTreeFind<CR>
-
-" vim-vsnip setup
-" NOTE: You can use other key to expand snippet.
-
-" Expand
-imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-
-" Expand or jump
-imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-
-" Jump forward or backward
-imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-
-" Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
-" See https://github.com/hrsh7th/vim-vsnip/pull/50
-nmap        s   <Plug>(vsnip-select-text)
-xmap        s   <Plug>(vsnip-select-text)
-nmap        S   <Plug>(vsnip-cut-text)
-xmap        S   <Plug>(vsnip-cut-text)
-
-" If you want to use snippet for multiple filetypes, you can `g:vsnip_filetypes` for it.
-let g:vsnip_filetypes = {}
-let g:vsnip_filetypes.javascriptreact = ['javascript']
-let g:vsnip_filetypes.typescriptreact = ['typescript']
