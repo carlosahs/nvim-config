@@ -26,8 +26,8 @@ set relativenumber
 
 nnoremap <leader>w :w<CR>
 nnoremap <leader>W :wa<CR>
-nnoremap <leader>q :q<CR>
-nnoremap <leader>Q :qa<CR>
+nnoremap <leader>q :wq<CR>
+nnoremap <leader>Q :wqa<CR>
 nnoremap <leader>e :e<Space>
 
 nnoremap <leader>- <C-w>-
