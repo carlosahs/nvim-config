@@ -28,7 +28,12 @@ nnoremap <leader>w :w<CR>
 nnoremap <leader>W :wa<CR>
 nnoremap <leader>q :q<CR>
 nnoremap <leader>Q :qa<CR>
-nnoremap <leader>e :e
+nnoremap <leader>e :e<Space>
+
+nnoremap <leader>- <C-w>-
+nnoremap <leader>+ <C-w>+
+nnoremap <leader>> 3<C-w>>
+nnoremap <leader>< 3<C-w><
 
 lua << EOF
   local nvim_lsp = require('lspconfig')
