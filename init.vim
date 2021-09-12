@@ -1,15 +1,12 @@
 call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'neovim/nvim-lspconfig'
-Plug 'glepnir/lspsaga.nvim'
-Plug 'nvim-lua/completion-nvim'
-Plug 'arcticicestudio/nord-vim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'glepnir/lspsaga.nvim'
+
+Plug 'arcticicestudio/nord-vim'
 Plug 'itchyny/lightline.vim'
-Plug 'hrsh7th/nvim-cmp'
-Plug 'hrsh7th/vim-vsnip'
-Plug 'hrsh7th/cmp-buffer'
-Plug 'hrsh7th/vim-vsnip-integ'
+
 Plug 'mfussenegger/nvim-jdtls'
 
 Plug 'ryanoasis/vim-devicons'
@@ -26,26 +23,25 @@ set relativenumber
 
 nnoremap <leader>w :w<CR>
 nnoremap <leader>W :wa<CR>
-nnoremap <leader>q :wq<CR>
-nnoremap <leader>Q :wqa<CR>
+nnoremap <leader>q :q<CR>
+nnoremap <leader>Q :qa<CR>
 nnoremap <leader>e :e<Space>
 
-nnoremap <leader>- <C-w>-
-nnoremap <leader>+ <C-w>+
+nnoremap <leader>- 3<C-w>-
+nnoremap <leader>+ 3<C-w>+
 nnoremap <leader>> 3<C-w>>
 nnoremap <leader>< 3<C-w><
 
 lua << EOF
   local nvim_lsp = require('lspconfig')
-  local lsp_saga = require('lspsaga')
-  local cmp = require('cmp')
 
+  local lsp_saga = require('lspsaga')
   lsp_saga.init_lsp_saga()
 
+  nvim_lsp.rust_analyzer.setup{}
   nvim_lsp.pyright.setup{}
   nvim_lsp.clangd.setup{}
   nvim_lsp.texlab.setup{}
-  nvim_lsp.rust_analyzer.setup{}
 EOF
 
 " LSP setup
@@ -75,7 +71,19 @@ colorscheme nord
 " lightline setup
 let g:lightline = {
   \ 'colorscheme': 'nord',
+  \ 'component_function': {
+  \   'filetype': 'MyFiletype',
+  \   'fileformat': 'MyFileformat',
   \ }
+  \ }
+
+function! MyFiletype()
+  return winwidth(0) > 70 ? (strlen(&filetype) ? &filetype . ' ' . WebDevIconsGetFileTypeSymbol() : 'no ft') : ''
+endfunction
+
+function! MyFileformat()
+  return winwidth(0) > 70 ? (&fileformat . ' ' . WebDevIconsGetFileFormatSymbol()) : ''
+endfunction
 
 " Navigation setup
 nnoremap <leader>h <C-w>h
