@@ -11,25 +11,17 @@ vim.api.nvim_exec(
     autocmd!
     autocmd BufWritePost init.lua PackerCompile
   augroup end
-]],
+  ]],
   false
 )
 
 local use = require('packer').use
 require('packer').startup(function()
   use 'wbthomason/packer.nvim' -- Package manager
-  use 'tpope/vim-fugitive' -- Git commands in nvim
-  use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
-  use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
-  use 'ludovicchabant/vim-gutentags' -- Automatic tags management
   -- UI to select things (files, grep results, open buffers...)
   use { 'nvim-telescope/telescope.nvim', requires = { 'nvim-lua/plenary.nvim' } }
-  use 'joshdick/onedark.vim' -- Theme inspired by Atom
+  use 'arcticicestudio/nord-vim' -- Theme inspired by Atom
   use 'itchyny/lightline.vim' -- Fancier statusline
-  -- Add indentation guides even on blank lines
-  use 'lukas-reineke/indent-blankline.nvim'
-  -- Add git related info in the signs columns and popups
-  use { 'lewis6991/gitsigns.nvim', requires = { 'nvim-lua/plenary.nvim' } }
   -- Highlight, edit, and navigate code using a fast incremental parsing library
   use 'nvim-treesitter/nvim-treesitter'
   -- Additional textobjects for treesitter
@@ -53,9 +45,6 @@ vim.wo.number = true
 --Do not save when switching buffers (note: this is now a default on master)
 vim.o.hidden = true
 
---Enable mouse mode
-vim.o.mouse = 'a'
-
 --Enable break indent
 vim.o.breakindent = true
 
@@ -73,13 +62,11 @@ vim.wo.signcolumn = 'yes'
 --Set colorscheme (order is important here)
 vim.o.termguicolors = true
 vim.g.onedark_terminal_italics = 2
-vim.cmd [[colorscheme onedark]]
+vim.cmd [[colorscheme nord]]
 
 --Set statusbar
 vim.g.lightline = {
-  colorscheme = 'onedark',
-  active = { left = { { 'mode', 'paste' }, { 'gitbranch', 'readonly', 'filename', 'modified' } } },
-  component_function = { gitbranch = 'fugitive#head' },
+  colorscheme = 'nord',
 }
 
 --Remap space as leader key
@@ -105,24 +92,6 @@ vim.api.nvim_exec(
 -- Y yank until the end of line  (note: this is now a default on master)
 vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true })
 
---Map blankline
-vim.g.indent_blankline_char = '┊'
-vim.g.indent_blankline_filetype_exclude = { 'help', 'packer' }
-vim.g.indent_blankline_buftype_exclude = { 'terminal', 'nofile' }
-vim.g.indent_blankline_char_highlight = 'LineNr'
-vim.g.indent_blankline_show_trailing_blankline_indent = false
-
--- Gitsigns
-require('gitsigns').setup {
-  signs = {
-    add = { hl = 'GitGutterAdd', text = '+' },
-    change = { hl = 'GitGutterChange', text = '~' },
-    delete = { hl = 'GitGutterDelete', text = '_' },
-    topdelete = { hl = 'GitGutterDelete', text = '‾' },
-    changedelete = { hl = 'GitGutterChange', text = '~' },
-  },
-}
-
 -- Telescope
 require('telescope').setup {
   defaults = {
@@ -134,7 +103,7 @@ require('telescope').setup {
     },
   },
 }
---Add leader shortcuts
+-- Telescope shortcuts
 vim.api.nvim_set_keymap('n', '<leader><space>', [[<cmd>lua require('telescope.builtin').buffers()<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>sf', [[<cmd>lua require('telescope.builtin').find_files({previewer = false})<CR>]], { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>sb', [[<cmd>lua require('telescope.builtin').current_buffer_fuzzy_find()<CR>]], { noremap = true, silent = true })
@@ -159,9 +128,6 @@ require('nvim-treesitter.configs').setup {
       scope_incremental = 'grc',
       node_decremental = 'grm',
     },
-  },
-  indent = {
-    enable = true,
   },
   textobjects = {
     select = {
@@ -230,50 +196,13 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'tsserver' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'texlab' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
   }
 end
-
--- Example custom server
-local sumneko_root_path = vim.fn.getenv 'HOME' .. '/.local/bin/sumneko_lua' -- Change to your sumneko root installation
-local sumneko_binary = sumneko_root_path .. '/bin/linux/lua-language-server'
-
--- Make runtime files discoverable to the server
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
-
-require('lspconfig').sumneko_lua.setup {
-  cmd = { sumneko_binary, '-E', sumneko_root_path .. '/main.lua' },
-  on_attach = on_attach,
-  capabilities = capabilities,
-  settings = {
-    Lua = {
-      runtime = {
-        -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-        version = 'LuaJIT',
-        -- Setup your lua path
-        path = runtime_path,
-      },
-      diagnostics = {
-        -- Get the language server to recognize the `vim` global
-        globals = { 'vim' },
-      },
-      workspace = {
-        -- Make the server aware of Neovim runtime files
-        library = vim.api.nvim_get_runtime_file('', true),
-      },
-      -- Do not send telemetry data containing a randomized but unique identifier
-      telemetry = {
-        enable = false,
-      },
-    },
-  },
-}
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
