@@ -78,6 +78,45 @@ vim.g.maplocalleader = ' '
 vim.api.nvim_set_keymap('n', 'k', "v:count == 0 ? 'gk' : 'k'", { noremap = true, expr = true, silent = true })
 vim.api.nvim_set_keymap('n', 'j', "v:count == 0 ? 'gj' : 'j'", { noremap = true, expr = true, silent = true })
 
+-- General configuration
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.autowrite = true
+vim.o.relativenumber = true
+
+-- Quitting and writing keybindings
+vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>W', ':wa<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>Q', ':qa<CR>', { noremap = true, silent = true })
+
+-- Window resizing keybindings
+vim.api.nvim_set_keymap('n', '<leader>-', '3<C-w>-', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>+', '3<C-w>+', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>>', '3<C-w>>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader><', '3<C-w><', { noremap = true, silent = true })
+
+-- Window navigation configuration
+vim.api.nvim_set_keymap('n', '<leader>h', '<C-w>h', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>j', '<C-w>j', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>k', '<C-w>k', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>l', '<C-w>l', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', '<leader>H', '<C-w>H', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>J', '<C-w>J', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>K', '<C-w>K', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>L', '<C-w>L', { noremap = true, silent = true })
+
+-- File navigation configuration
+vim.api.nvim_set_keymap('n', '<leader>fp', ':prev<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fn', ':n<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fa', ':args<CR>', { noremap = true, silent = true })
+
+-- Terminal keybindings
+vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+vim.cmd[[ autocmd BufEnter term://* startinsert ]]
+vim.cmd[[ autocmd TermOpen * setlocal nonumber norelativenumber ]]
+
 -- Highlight on yank
 vim.api.nvim_exec(
   [[
