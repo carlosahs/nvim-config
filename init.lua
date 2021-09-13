@@ -89,6 +89,7 @@ vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', { noremap = true, silent = t
 vim.api.nvim_set_keymap('n', '<leader>W', ':wa<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>Q', ':qa<CR>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>e', ':e<Space>', { noremap = true, silent = true })
 
 -- Window resizing keybindings
 vim.api.nvim_set_keymap('n', '<leader>-', '3<C-w>-', { noremap = true, silent = true })
@@ -106,6 +107,10 @@ vim.api.nvim_set_keymap('n', '<leader>H', '<C-w>H', { noremap = true, silent = t
 vim.api.nvim_set_keymap('n', '<leader>J', '<C-w>J', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>K', '<C-w>K', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>L', '<C-w>L', { noremap = true, silent = true })
+
+-- -- Window split configuration
+-- vim.api.nvim_set_keymap('n', '<leader>V', ':vsplit<Space>', { noremap = true, silent = true })
+-- vim.api.nvim_set_keymap('n', '<leader>S', ':split<Space>', { noremap = true, silent = true })
 
 -- File navigation configuration
 vim.api.nvim_set_keymap('n', '<leader>fp', ':prev<CR>', { noremap = true, silent = true })
@@ -222,7 +227,7 @@ local on_attach = function(_, bufnr)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
   -- vim.api.nvim_buf_set_keymap(bufnr, 'v', '<leader>ca', '<cmd>lua vim.lsp.buf.range_code_action()<CR>', opts)
-  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+  vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>E', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
   vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>d', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
