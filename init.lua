@@ -27,7 +27,13 @@ require('packer').startup(function()
   -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
-  use 'hrsh7th/nvim-cmp' -- Autocompletion plugin
+  use {
+    'hrsh7th/nvim-cmp', -- Autocompletion plugin
+    requires = {
+      "hrsh7th/vim-vsnip",
+      "hrsh7th/cmp-buffer",
+    }
+  }
   use 'hrsh7th/cmp-nvim-lsp'
   use 'saadparwaiz1/cmp_luasnip'
   use 'L3MON4D3/LuaSnip' -- Snippets plugin
@@ -258,7 +264,7 @@ local luasnip = require 'luasnip'
 local cmp = require 'cmp'
 cmp.setup {
   completion = {
-    autcomplete = false
+    autocomplete = false
   },
   snippet = {
     expand = function(args)
