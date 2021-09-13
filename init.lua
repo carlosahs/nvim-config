@@ -125,6 +125,8 @@ vim.api.nvim_set_keymap('n', '<leader>fa', ':args<CR>', { noremap = true, silent
 
 -- Terminal keybindings
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>T', ':vsplit term://bash<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>t', ':split term://bash<CR>', { noremap = true, silent = true })
 vim.cmd[[ autocmd BufEnter term://* startinsert ]]
 vim.cmd[[ autocmd TermOpen * setlocal nonumber norelativenumber ]]
 
@@ -246,7 +248,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'texlab' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'texlab', 'solargraph' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
