@@ -125,6 +125,12 @@ vim.api.nvim_set_keymap('n', '<leader>fa', ':args<CR>', { noremap = true, silent
 
 -- Terminal keybindings
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('t', '<C-Space>h', '<C-\\><C-n><C-w>h', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<C-Space>j', '<C-\\><C-n><C-w>j', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<C-Space>k', '<C-\\><C-n><C-w>k', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('t', '<C-Space>l', '<C-\\><C-n><C-w>l', { noremap = true, silent = true })
+
 vim.api.nvim_set_keymap('n', '<leader>T', ':vsplit term://bash<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>t', ':split term://bash<CR>', { noremap = true, silent = true })
 vim.cmd[[ autocmd BufEnter term://* startinsert ]]
@@ -248,7 +254,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 -- Enable the following language servers
-local servers = { 'clangd', 'rust_analyzer', 'pyright', 'texlab', 'solargraph' }
+local servers = { 'clangd', 'rust_analyzer', 'pyright', 'texlab', 'solargraph', 'rome' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
