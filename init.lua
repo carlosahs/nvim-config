@@ -121,7 +121,9 @@ vim.api.nvim_set_keymap('n', '<leader>L', '<C-w>L', { noremap = true, silent = t
 -- File navigation configuration
 vim.api.nvim_set_keymap('n', '<leader>fp', ':prev<CR>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('n', '<leader>fn', ':n<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>fa', ':args<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fs', ':args<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fa', ':arga %<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>fr', ':argd %<CR>', { noremap = true, silent = true })
 
 -- Terminal keybindings
 vim.api.nvim_set_keymap('t', '<Esc>', '<C-\\><C-n>', { noremap = true, silent = true })
