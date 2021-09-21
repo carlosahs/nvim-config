@@ -134,7 +134,7 @@ vim.api.nvim_set_keymap('t', '<C-Space>k', '<C-\\><C-n><C-w>k', { noremap = true
 vim.api.nvim_set_keymap('t', '<C-Space>l', '<C-\\><C-n><C-w>l', { noremap = true, silent = true })
 
 vim.api.nvim_set_keymap('n', '<leader>T', ':vsplit term://bash<CR>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', '<leader>t', ':split term://bash<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<leader>t', ':split term://bash<CR>:res 15<CR>', { noremap = true, silent = true })
 vim.cmd[[ autocmd BufEnter term://* startinsert ]]
 vim.cmd[[ autocmd TermOpen * setlocal nonumber norelativenumber ]]
 
