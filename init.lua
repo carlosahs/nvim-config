@@ -27,6 +27,7 @@ require('packer').startup(function()
   -- Additional textobjects for treesitter
   use 'nvim-treesitter/nvim-treesitter-textobjects'
   use 'neovim/nvim-lspconfig' -- Collection of configurations for built-in LSP client
+  use 'mfussenegger/nvim-jdtls' -- JDTLS
   use {
     'hrsh7th/nvim-cmp', -- Autocompletion plugin
     requires = {
@@ -263,6 +264,9 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities,
   }
 end
+
+-- -- JDTLS
+-- require'jdtls'.start_or_attach({ cmd = { 'jdtls.sh' } })
 
 -- Set completeopt to have a better completion experience
 vim.o.completeopt = 'menuone,noselect'
