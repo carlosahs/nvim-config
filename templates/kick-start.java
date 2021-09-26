@@ -1,5 +1,9 @@
-import java.io.*;
-import java.util.*;
+// import java.io.*;
+import java.util.Scanner;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 class KickStart
 {
