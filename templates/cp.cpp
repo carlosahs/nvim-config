@@ -2,6 +2,8 @@
 
 using namespace std;
 
+typedef long long ll;
+
 int main() {
     // faster input and output
     ios::sync_with_stdio(0);
