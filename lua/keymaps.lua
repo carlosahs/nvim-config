@@ -4,6 +4,7 @@ function noremap(mode, lhs, rhs)
 end
 
 function nnoremap(lhs, rhs) noremap('n', lhs, rhs) end
+function tnoremap(lhs, rhs) noremap('t', lhs, rhs) end
 
 -- window navigation
 nnoremap("<Space>h", "<C-W>h")
@@ -17,3 +18,6 @@ nnoremap("<C-r>", ":luafile %<CR>")
 -- file editing
 nnoremap("<Space>w", ":w<CR>")
 nnoremap("<Space>q", ":q<CR>")
+
+-- terminal setup
+-- tnoremap("<C-`>", "<
