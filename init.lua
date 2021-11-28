@@ -1,6 +1,5 @@
 require('lualine').setup()
 
-require('coc-config')
 require('colors')
 require('commands')
 require('keymaps')
