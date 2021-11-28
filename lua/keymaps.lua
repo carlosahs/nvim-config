@@ -24,6 +24,8 @@ nnoremap("<Space>%", ":luafile %<CR>")
 nnoremap("<Space>w", ":w<CR>")
 nnoremap("<Space>q", ":q<CR>")
 
+nnoremap_opts("<Space>e", ":e ", { noremap = true })
+
 -- terminal setup
 tnoremap("<Esc>", "<C-\\><C-N>")
 
