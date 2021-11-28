@@ -1,5 +1,7 @@
 local KeyMaps = require("utils.keymaps")
 
+local nnoremap_opts = KeyMaps.nnoremap_opts
+
 local nnoremap = KeyMaps.nnoremap
 local tnoremap = KeyMaps.tnoremap
 
@@ -16,7 +18,7 @@ nnoremap("<Space>K", "<C-W>K")
 nnoremap("<Space>L", "<C-W>L")
 
 -- source lua file
-nnoremap("<C-r>", ":luafile %<CR>")
+nnoremap("<Space>%", ":luafile %<CR>")
 
 -- file editing
 nnoremap("<Space>w", ":w<CR>")
@@ -30,5 +32,9 @@ tnoremap("<C-Space>j", "<C-\\><C-N><C-W>j")
 tnoremap("<C-Space>k", "<C-\\><C-N><C-W>k")
 tnoremap("<C-Space>l", "<C-\\><C-N><C-W>l")
 
-nnoremap("tv", ":vs term://bash<CR>")
-nnoremap("th", ":sp term://bash<CR>")
+nnoremap("<Space>~", ":vs term://bash<CR>")
+nnoremap("<Space>`", ":sp term://bash<CR>")
+
+-- horizontal and vertical splits
+nnoremap_opts("<Space>-", ":sp ", { noremap = true, silent = false })
+nnoremap_opts("<Space>|", ":vs ", { noremap = true, silent = false })
