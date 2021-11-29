@@ -26,7 +26,7 @@ nnoremap("<Space>w", ":w<CR>")
 nnoremap("<Space>q", ":q<CR>")
 
 nnoremap_opts("<Space>e", ":e ", { noremap = true })
-nnoremap_opts("<Space>r", ":res ", { noremap = true })
+nnoremap_opts("<Space>r", ":res ", { noremap = true, silent = false })
 
 -- terminal setup
 tnoremap("<Esc>", "<C-\\><C-N>")
