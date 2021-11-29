@@ -14,4 +14,4 @@ vim.o.tabstop = 2
 vim.o.shiftwidth = 2
 
 -- lsp config
-vim.o.completeopt = "menuone,noselect"
+vim.o.completeopt = "menu,menuone,noselect"
