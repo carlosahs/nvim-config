@@ -15,3 +15,6 @@ nnoremap('<C-B>', "<cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)
 
 -- rename
 nnoremap('<Space>rn', ':Lspsaga rename<CR>')
+
+-- diagnostics
+nnoremap('<Space>ld', ':Lspsaga show_line_diagnostics<CR>')
