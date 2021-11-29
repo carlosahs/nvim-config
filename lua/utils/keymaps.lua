@@ -20,5 +20,6 @@ end
 
 function KeyMaps.nnoremap(lhs, rhs) KeyMaps.noremap('n', lhs, rhs) end
 function KeyMaps.tnoremap(lhs, rhs) KeyMaps.noremap('t', lhs, rhs) end
+function KeyMaps.inoremap(lhs, rhs) KeyMaps.noremap('i', lhs, rhs) end
 
 return KeyMaps

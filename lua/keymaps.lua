@@ -4,6 +4,7 @@ local nnoremap_opts = KeyMaps.nnoremap_opts
 
 local nnoremap = KeyMaps.nnoremap
 local tnoremap = KeyMaps.tnoremap
+local inoremap = KeyMaps.inoremap
 
 -- window navigation
 nnoremap("<Space>h", "<C-W>h")
@@ -40,3 +41,6 @@ nnoremap("<Space>`", ":sp term://bash<CR>")
 -- horizontal and vertical splits
 nnoremap_opts("<Space>-", ":sp ", { noremap = true, silent = false })
 nnoremap_opts("<Space>|", ":vs ", { noremap = true, silent = false })
+
+-- lsp config
+inoremap("<C-Space>", "<C-X><C-O>")
