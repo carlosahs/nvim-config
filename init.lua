@@ -4,6 +4,9 @@ require('colors')
 require('commands')
 require('keymaps')
 require('options')
+
+require('lsp-config')
+require('lspsaga-config')
 require('telescope-config')
 
 require'nvim-treesitter.configs'.setup {
@@ -32,4 +35,5 @@ return require('packer').startup(function()
     requires = { 'kyazdani42/nvim-web-devicons', opt = true }
   }
   use 'neovim/nvim-lspconfig'
+  use 'glepnir/lspsaga.nvim'
 end)
