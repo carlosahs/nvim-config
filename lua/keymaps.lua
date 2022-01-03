@@ -36,8 +36,8 @@ tnoremap("<C-Space>j", "<C-\\><C-N><C-W>j")
 tnoremap("<C-Space>k", "<C-\\><C-N><C-W>k")
 tnoremap("<C-Space>l", "<C-\\><C-N><C-W>l")
 
-nnoremap("<Space>~", ":vs term://bash<CR>")
-nnoremap("<Space>`", ":sp term://bash<CR>")
+nnoremap("<Space><Space>|", ":vs term://bash<CR>")
+nnoremap("<Space><Space>-", ":sp term://bash<CR>:res 10<CR>")
 
 -- horizontal and vertical splits
 nnoremap_opts("<Space>-", ":sp ", { noremap = true, silent = false })
