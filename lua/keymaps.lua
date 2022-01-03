@@ -12,6 +12,9 @@ nnoremap("<Space>j", "<C-W>j")
 nnoremap("<Space>k", "<C-W>k")
 nnoremap("<Space>l", "<C-W>l")
 
+-- quick help
+nnoremap_opts("<Space><Space>h", ":h ", { noremap = true })
+
 -- moving windows
 nnoremap("<Space>H", "<C-W>H")
 nnoremap("<Space>J", "<C-W>J")
