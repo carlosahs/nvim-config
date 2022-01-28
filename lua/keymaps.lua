@@ -48,3 +48,6 @@ nnoremap_opts("<Space>|", ":vs ", { noremap = true, silent = false })
 
 -- lsp config
 inoremap("<C-Space>", "<C-X><C-O>")
+
+-- tabs config
+nnoremap("<Space>t", ":tab new<CR>")
