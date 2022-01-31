@@ -19,5 +19,12 @@ vim.o.completeopt = { "menuone", "noselect" }
 -- do not create backup files
 vim.o.backup = false
 
+-- search config
+vim.o.hlsearch = true
+vim.o.ignorecase = true
+
 -- do not create swap files
 vim.o.swapfile = false
+
+-- mouse config
+vim.o.mouse = "a"
