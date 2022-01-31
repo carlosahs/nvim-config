@@ -15,3 +15,6 @@ vim.o.shiftwidth = 2
 
 -- lsp config
 vim.o.completeopt = "menu,menuone,noselect"
+
+-- do not create backup files
+vim.o.backup = false
