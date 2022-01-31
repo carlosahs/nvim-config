@@ -18,3 +18,6 @@ vim.o.completeopt = { "menuone", "noselect" }
 
 -- do not create backup files
 vim.o.backup = false
+
+-- do not create swap files
+vim.o.swapfile = false
